@@ -1,7 +1,7 @@
 <section class="todoapp">
   <header class="header">
     <h1>{{label}}</h1>
-    <form (submit)="appendItem(newTodoInput.value); newTodoInput.value='';">
+    <form (submit)="appendItem(newTodoInput);">
       <input  #newTodoInput
               name        = "newTodoInput"
               class       = "new-todo"
@@ -19,7 +19,7 @@
     </ul>
   </section>
   <footer class="footer">
-    <span class="todo-count"><strong></strong> restantes</span>
+    <span class="todo-count"><strong>{{todoCount}}</strong> restantes</span>
     <ul class="filters">
       <li>
         <a class="filterAll">Tous</a>
@@ -31,58 +31,8 @@
         <a class="filterCompleted">Complétés</a>
       </li>
     </ul>
-    <button class="clear-completed">Supprimer cochées</button>
+
+    <button *ngIf="todoService.todoListExistItemDone" class="clear-completed" (click)="itemDoneRemove()">Supprimer cochées</button>
   </footer>
 </section>
 <hr/>
-
-<!-- debug v1 -->
-<h1>Debug 1</h1>
-<ul>
-  <li *ngFor="let item of items">{{ item|json }}</li>
-</ul>
-
-<!-- debug v2 -->
-<h1>Debug 2</h1>
-<ul>
-  <li *ngFor="let item of items">
-    <input id="select-label" type="checkbox" [ngModel]="item.isDone"/>
-    <label for="select-label">{{item.label}}</label>
-    <pre>{{ item|json }}</pre>
-</ul>
-
-<!-- debug v3-->
-<h1>Debug 3</h1>
-<ul>
-  <li *ngFor="let item of items">
-    <input id="select-label2" type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)"/>
-    <label for="select-label2">{{item.label}}</label>
-    <pre>{{ item|json }}</pre>
-</ul>
-
-<!-- debug v4-->
-<h1>Debug 4</h1>
-<ul>
-  <li *ngFor="let item of items">
-    <input id="select-label3" type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)"/>
-    <label for="select-label3">{{item.label}}</label>
-    <form (submit)="itemLabel(item, newLab.value)">
-      <input name="newLabel" type="text" [ngModel]="item.label" #newLab/>
-    </form>
-    <pre>{{ item|json }}</pre>
-</ul>
-
-<!-- debug v5-->
-<h1>Debug 5</h1>
-<ul>
-  <li *ngFor="let item of items">
-    <input id="select-label4" type="checkbox" [ngModel]="item.isDone" (ngModelChange)="itemDone(item, $event)"/>
-    <label for="select-label4">{{item.label}}</label>
-    <br/>
-    <button (click)="itemDelete(item)">Remove</button>
-    <pre>{{ item|json }}</pre>
-</ul>
-
-
-
-

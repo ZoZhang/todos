@@ -8,6 +8,9 @@ export class TodoService {
 
   private todoListSubject = new BehaviorSubject<TodoListData>( {label: 'TodoList', items: []} );
 
+  // initiale l'état supprimé cochée
+  todoListExistItemDone = false;
+
   constructor() { }
 
   getTodoListDataObservable(): Observable<TodoListData> {
@@ -28,6 +31,8 @@ export class TodoService {
       label: tdl.label,
       items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label: I.label, isDone}) )
     });
+    // mise à jour l'état supprimé cochée
+    this.todoListExistItemDone = true;
   }
 
   appendItems( ...items: TodoItemData[] ) {

@@ -1,13 +1,14 @@
-<div class="view">
-  <input 	class			= "toggle"
-          type			= "checkbox"
-          name			= "fait"
-  />
-  <label 	class="texte"></label>
-  <button class="destroy"></button>
-</div>
-<form>
-  <input  #newTextInput
-          name    = "newTextInput"
-          class   = "edit"/>
-</form>
+<li *ngFor="let item of items">
+  <div class="view">
+      <input class="toggle"
+             type="checkbox"
+             name="fait"
+             [ngModel]="item.isDone"
+             (ngModelChange)="itemDone(item, $event)"
+      />
+      <label>{{item.label}}</label>
+      <button class="destroy" (click)="itemRemove(item)"></button>
+
+  </div>
+</li>
+

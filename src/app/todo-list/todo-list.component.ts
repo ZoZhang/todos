@@ -27,22 +27,31 @@ export class TodoListComponent implements OnInit {
         return this.todoList.items;
     }
 
-    appendItem(label: string) {
+    get todoCount(): number {
+        return this.todoList.items.filter(item => item.isDone === false).length;
+    }
+
+    appendItem(input: any) {
+
+      if (typeof input !== 'object') {
+          return;
+      }
+
+      const label = input.value;
+
+      if (label.length <= 0) {
+          input.placeholder = 'Vous devez entrer au moins un caractère ！';
+          return;
+      }
+
       this.todoService.appendItems({
         label, isDone: false
       });
     }
 
-    itemDone(item: TodoItemData, done:boolean) {
-      this.todoService.setItemsDone(done, item);
+    itemDoneRemove() {
+        this.todoList.items.filter(item => item.isDone === true && this.todoService.removeItems(item));
+        // initiale l'état supprimé cochée
+        this.todoService.todoListExistItemDone = false;
     }
-
-    itemLabel(item: TodoItemData, newLabel:string) {
-      this.todoService.setItemsLabel(newLabel, item);
-    }
-
-    itemDelete(item: TodoItemData) {
-      this.todoService.removeItems(item);
-    }
-
 }
