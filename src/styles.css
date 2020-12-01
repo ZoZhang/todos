@@ -159,19 +159,19 @@ label[for='toggle-all'] {
   border-bottom: none;
 }
 
-.todo-list li.editing {
+.todo-list .editing {
   border-bottom: none;
   padding: 0;
 }
 
-.todo-list li.editing .edit {
+.todo-list .editing .edit {
   display: block;
   width: 506px;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px;
 }
 
-.todo-list li.editing .view {
+.todo-list .editing .view {
   display: none;
 }
 
@@ -207,7 +207,7 @@ label[for='toggle-all'] {
   transition: color 0.4s;
 }
 
-.todo-list li.completed label {
+.todo-list li div.completed label {
   color: #d9d9d9;
   text-decoration: line-through;
 }
@@ -243,7 +243,7 @@ label[for='toggle-all'] {
   display: none;
 }
 
-.todo-list li.editing:last-child {
+.todo-list .editing:last-child {
   margin-bottom: -1px;
 }
 
@@ -295,6 +295,7 @@ label[for='toggle-all'] {
 .filters li a {
   color: inherit;
   margin: 3px;
+  cursor: pointer;
   padding: 3px 7px;
   text-decoration: none;
   border: 1px solid transparent;
