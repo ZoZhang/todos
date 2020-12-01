@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoItemData} from '../dataTypes/TodoItemData';
 import {TodoListData} from '../dataTypes/TodoListData';
-import {TodoService} from '../todo.service';
+import {TodoService} from '../services/todo.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -20,15 +20,36 @@ export class TodoItemComponent implements OnInit {
   }
 
   get items(): TodoItemData[] {
-    return this.todoList.items;
+
+    let listItems = this.todoList.items;
+    switch (this.todoService.todoListFiltreStatus) {
+
+      case 'all':
+        listItems = this.todoList.items.filter(item => item.label !== '');
+        break;
+
+      case 'active':
+        listItems = listItems.filter(item => item.isDone === false);
+        break;
+
+      case 'complet':
+        listItems = listItems.filter(item => item.isDone === true);
+        break;
+    }
+
+    return listItems;
   }
 
-  isDone(item: TodoItemData) {
-    return item.isDone;
+  changeMode(mode: string) {
+    this.todoService.todoListModeStatus = mode;
   }
 
   itemDone(item: TodoItemData, done: boolean) {
     this.todoService.setItemsDone(done, item);
+  }
+
+  itemLabel(item: TodoItemData, newLabel: string) {
+     this.todoService.setItemsLabel(newLabel, item);
   }
 
   itemRemove(item: TodoItemData) {

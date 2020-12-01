@@ -1,14 +1,36 @@
 <li *ngFor="let item of items">
-  <div class="view">
-      <input class="toggle"
-             type="checkbox"
-             name="fait"
-             [ngModel]="item.isDone"
-             (ngModelChange)="itemDone(item, $event)"
-      />
-      <label>{{item.label}}</label>
-      <button class="destroy" (click)="itemRemove(item)"></button>
 
-  </div>
+    <ng-container *ngIf="todoService.todoListModeStatus === 'edit'; then modeEdit; else modeRead">
+    </ng-container>
+
+    <ng-template #modeRead>
+      <div [ngClass]="(item.isDone === true) ? 'view completed' : 'view'">
+        <input class="toggle"
+               type="checkbox"
+               name="fait"
+               [ngModel]="item.isDone"
+               (ngModelChange)="itemDone(item, $event)"
+        />
+        <label (dblclick)="changeMode('edit')">{{item.label}}</label>
+        <button class="destroy" (click)="itemRemove(item)"></button>
+      </div>
+    </ng-template>
+
+    <ng-template #modeEdit>
+      <div [ngClass]="(item.isDone === true) ? 'editing completed' : 'editing'">
+        <input class="toggle"
+               type="checkbox"
+               name="fait"
+               [ngModel]="item.isDone"
+               (ngModelChange)="itemDone(item, $event)"
+        />
+        <form (submit)="itemLabel(item, newLab.value)">
+          <input  #newLab
+                  name    = "newTextInput"
+                  class   = "edit"
+          />
+        </form>
+      </div>
+    </ng-template>
+
 </li>
-

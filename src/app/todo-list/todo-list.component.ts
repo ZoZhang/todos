@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoListData} from '../dataTypes/TodoListData';
 import {TodoItemData} from '../dataTypes/TodoItemData';
-import {TodoService} from '../todo.service';
+import {TodoService} from '../services/todo.service';
 
 @Component({
     selector: 'app-todo-list',
@@ -23,12 +23,12 @@ export class TodoListComponent implements OnInit {
         return this.todoList.label;
     }
 
-    get items(): TodoItemData[] {
-        return this.todoList.items;
-    }
-
     get todoCount(): number {
         return this.todoList.items.filter(item => item.isDone === false).length;
+    }
+
+    itemShow(type: string) {
+        this.todoService.todoListFiltreStatus = type;
     }
 
     appendItem(input: any) {

@@ -22,16 +22,15 @@
     <span class="todo-count"><strong>{{todoCount}}</strong> restantes</span>
     <ul class="filters">
       <li>
-        <a class="filterAll">Tous</a>
+        <a [ngClass]="(todoService.todoListFiltreStatus === 'all') ? 'filterAll selected' : 'filterAll'" (click)="itemShow('all')">Tous</a>
       </li>
       <li>
-        <a class="filterActives">Actifs</a>
+        <a [ngClass]="(todoService.todoListFiltreStatus === 'active') ? 'filterActives selected' : 'filterActives'" (click)="itemShow('active')">Actifs</a>
       </li>
       <li>
-        <a class="filterCompleted">Complétés</a>
+        <a [ngClass]="(todoService.todoListFiltreStatus === 'complet') ? 'filterCompleted selected' : 'filterCompleted'" (click)="itemShow('complet')">Complétés</a>
       </li>
     </ul>
-
     <button *ngIf="todoService.todoListExistItemDone" class="clear-completed" (click)="itemDoneRemove()">Supprimer cochées</button>
   </footer>
 </section>
