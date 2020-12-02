@@ -14,6 +14,9 @@ export class TodoService {
   // initialie l'état filtre
   todoListFiltreStatus = 'all';
 
+  // initialise l'état du toggle all
+  todoListSettingAllItemStatus = false;
+
   // initiale l'état supprimé cochée
   todoListExistItemDone = false;
 

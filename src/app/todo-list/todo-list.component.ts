@@ -31,6 +31,11 @@ export class TodoListComponent implements OnInit {
         this.todoService.todoListFiltreStatus = type;
     }
 
+    setDoneAllItems() {
+        this.todoService.todoListSettingAllItemStatus = !this.todoService.todoListSettingAllItemStatus;
+        this.todoList.items.map(item => this.todoService.setItemsDone(this.todoService.todoListSettingAllItemStatus, item));
+    }
+
     appendItem(input: any) {
 
       if (typeof input !== 'object') {
