@@ -14,6 +14,12 @@ export class TodoItemComponent implements OnInit {
 
   constructor(private todoService: TodoService) {
     todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
+
+    const localStorage = this.todoService.localStorage.getItem(this.todoService.localStorageKey).getValue();
+
+    if (localStorage.hasOwnProperty('items')) {
+      this.todoList.items = localStorage.items;
+    }
   }
 
   ngOnInit() {
@@ -21,23 +27,20 @@ export class TodoItemComponent implements OnInit {
 
   get items(): TodoItemData[] {
 
-    let listItems = this.todoList.items;
     switch (this.todoService.todoListFiltreStatus) {
 
       case 'all':
-        listItems = this.todoList.items.filter(item => item.label !== '');
+        return this.todoList.items.filter(item => item.label !== '');
         break;
 
       case 'active':
-        listItems = listItems.filter(item => item.isDone === false);
+        return this.todoList.items.filter(item => item.isDone === false);
         break;
 
       case 'complet':
-        listItems = listItems.filter(item => item.isDone === true);
+        return this.todoList.items.filter(item => item.isDone === true);
         break;
     }
-
-    return listItems;
   }
 
   changeMode(mode: string) {

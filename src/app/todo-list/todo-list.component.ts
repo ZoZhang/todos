@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoListData} from '../dataTypes/TodoListData';
-import {TodoItemData} from '../dataTypes/TodoItemData';
 import {TodoService} from '../services/todo.service';
 
 @Component({

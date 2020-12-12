@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import {TodoListData} from '../dataTypes/TodoListData';
 import {Observable, BehaviorSubject} from 'rxjs';
+import {TodoListData} from '../dataTypes/TodoListData';
 import {TodoItemData} from '../dataTypes/TodoItemData';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class TodoService {
-
-  private todoListSubject = new BehaviorSubject<TodoListData>( {label: 'TodoList', items: []} );
 
   // initialie l'état todolist
   todoListModeStatus = 'read';
@@ -20,6 +19,12 @@ export class TodoService {
   // initiale l'état supprimé cochée
   todoListExistItemDone = false;
 
+  localStorageKey   = 'TodoList-Angular';
+
+  localStorage = new LocalStorageService;
+
+  private todoListSubject = new BehaviorSubject<TodoListData>( {label: 'TodoList', items: []} );
+
   constructor() { }
 
   getTodoListDataObservable(): Observable<TodoListData> {
@@ -32,6 +37,8 @@ export class TodoService {
       label: tdl.label,
       items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label, isDone: I.isDone}) )
     });
+
+    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
   }
 
   setItemsDone(isDone: boolean, ...items: TodoItemData[] ) {
@@ -42,6 +49,8 @@ export class TodoService {
     });
     // mise à jour l'état supprimé cochée
     this.todoListExistItemDone = true;
+
+    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
   }
 
   appendItems( ...items: TodoItemData[] ) {
@@ -50,6 +59,8 @@ export class TodoService {
       label: tdl.label, // ou on peut écrire: ...tdl,
       items: [...tdl.items, ...items]
     });
+
+    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
   }
 
   removeItems( ...items: TodoItemData[] ) {
@@ -58,6 +69,8 @@ export class TodoService {
       label: tdl.label, // ou on peut écrire: ...tdl,
       items: tdl.items.filter( I => items.indexOf(I) === -1 )
     });
+
+    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
   }
 
 }
