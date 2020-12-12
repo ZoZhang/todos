@@ -32,7 +32,8 @@
         <a [ngClass]="(todoService.todoListFiltreStatus === 'complet') ? 'filterCompleted selected' : 'filterCompleted'" (click)="itemShow('complet')">Complétés</a>
       </li>
     </ul>
-    <button *ngIf="todoService.todoListExistItemDone" class="clear-completed" (click)="itemDoneRemove()">Supprimer cochées</button>
+    <button *ngIf="todoService.todoListExistItem" class="clear-completed" (click)="itemAllRemove()">Supprimer touts</button>
+    <button *ngIf="todoService.todoListExistItemDone" class="clear-completed" (click)="itemDoneRemove()">Supprimer terminés</button>
   </footer>
 </section>
 <hr/>

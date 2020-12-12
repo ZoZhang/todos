@@ -15,7 +15,9 @@ export class TodoItemComponent implements OnInit {
   constructor(private todoService: TodoService) {
     todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
 
-    const localStorageItems = this.todoService.localStorage.getItem(this.todoService.localStorageKey);
+    this.todoService.initialiseItemsStatus();
+
+    const localStorageItems = this.todoService.getLocalStorage();
 
     if ('object' === typeof localStorageItems) {
         this.todoList.items = localStorageItems.getValue();
@@ -30,15 +32,15 @@ export class TodoItemComponent implements OnInit {
     switch (this.todoService.todoListFiltreStatus) {
 
       case 'all':
-        return this.todoList.items.filter(item => item.label !== '');
+        return this.todoList.items.filter(I => I.label !== '' && I.isDeleted === false);
         break;
 
       case 'active':
-        return this.todoList.items.filter(item => item.isDone === false);
+        return this.todoList.items.filter(I => I.isDone === false && I.isDeleted === false);
         break;
 
       case 'complet':
-        return this.todoList.items.filter(item => item.isDone === true);
+        return this.todoList.items.filter(I => I.isDone === true && I.isDeleted === false);
         break;
     }
   }
@@ -58,4 +60,5 @@ export class TodoItemComponent implements OnInit {
   itemRemove(item: TodoItemData) {
     this.todoService.removeItems(item);
   }
+
 }

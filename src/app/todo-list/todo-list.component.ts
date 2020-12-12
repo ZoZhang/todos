@@ -23,7 +23,7 @@ export class TodoListComponent implements OnInit {
     }
 
     get todoCount(): number {
-        return this.todoList.items.filter(item => item.isDone === false).length;
+        return this.todoList.items.filter(I => I.isDone === false && I.isDeleted === false).length;
     }
 
     itemShow(type: string) {
@@ -41,21 +41,25 @@ export class TodoListComponent implements OnInit {
           return;
       }
 
-      const label = input.value;
+      const newLabel = input.value;
 
-      if (label.length <= 0) {
+      if (newLabel.length <= 0) {
           input.placeholder = 'Vous devez entrer au moins un caractère ！';
           return;
       }
 
       this.todoService.appendItems({
-        label, isDone: false
+          label: newLabel,
+          isDone: false,
+          isDeleted: false
       });
     }
 
     itemDoneRemove() {
         this.todoList.items.filter(item => item.isDone === true && this.todoService.removeItems(item));
-        // initiale l'état supprimé cochée
-        this.todoService.todoListExistItemDone = false;
+    }
+
+    itemAllRemove() {
+        this.todoService.removeAllItems();
     }
 }
