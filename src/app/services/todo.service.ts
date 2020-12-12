@@ -38,7 +38,7 @@ export class TodoService {
       items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label, isDone: I.isDone}) )
     });
 
-    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
+    this.toLocalStorage();
   }
 
   setItemsDone(isDone: boolean, ...items: TodoItemData[] ) {
@@ -50,7 +50,7 @@ export class TodoService {
     // mise à jour l'état supprimé cochée
     this.todoListExistItemDone = true;
 
-    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
+    this.toLocalStorage();
   }
 
   appendItems( ...items: TodoItemData[] ) {
@@ -59,8 +59,7 @@ export class TodoService {
       label: tdl.label, // ou on peut écrire: ...tdl,
       items: [...tdl.items, ...items]
     });
-
-    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
+    this.toLocalStorage();
   }
 
   removeItems( ...items: TodoItemData[] ) {
@@ -69,8 +68,11 @@ export class TodoService {
       label: tdl.label, // ou on peut écrire: ...tdl,
       items: tdl.items.filter( I => items.indexOf(I) === -1 )
     });
+  }
 
-    this.localStorage.setItem(this.localStorageKey, this.todoListSubject.getValue());
+  toLocalStorage() {
+    const tdl = this.todoListSubject.getValue();
+    this.localStorage.setItem(this.localStorageKey, tdl.items);
   }
 
 }

@@ -15,10 +15,10 @@ export class TodoItemComponent implements OnInit {
   constructor(private todoService: TodoService) {
     todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
 
-    const localStorage = this.todoService.localStorage.getItem(this.todoService.localStorageKey).getValue();
+    const localStorageItems = this.todoService.localStorage.getItem(this.todoService.localStorageKey);
 
-    if (localStorage.hasOwnProperty('items')) {
-      this.todoList.items = localStorage.items;
+    if ('object' === typeof localStorageItems) {
+        this.todoList.items = localStorageItems.getValue();
     }
   }
 

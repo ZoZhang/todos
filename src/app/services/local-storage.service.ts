@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {TodoItemData} from '../dataTypes/TodoItemData';
 interface ICache { [ key: string ]: BehaviorSubject<any>; }
-type serializable = object | Object;
 
 @Injectable()
 export class LocalStorageService {
@@ -11,7 +11,7 @@ export class LocalStorageService {
         this.cache = Object.create( null );
     }
 
-    setItem<T extends serializable>( key: string, value: T ): BehaviorSubject<T> {
+    setItem<T extends TodoItemData[]>( key: string, value: T ): BehaviorSubject<T> {
         localStorage.setItem( key, JSON.stringify( value ) );
 
         if ( this.cache[ key ] ) {
@@ -22,7 +22,7 @@ export class LocalStorageService {
         return this.cache[ key ] = new BehaviorSubject( value );
     }
 
-    getItem<T extends serializable>( key: string ): BehaviorSubject<T> {
+    getItem<T extends TodoItemData[]>( key: string ): BehaviorSubject<T> {
         if ( this.cache[ key ] )
             return this.cache[ key ];
         else
