@@ -19,7 +19,7 @@
       <app-todo-item></app-todo-item>
     </ul>
   </section>
-  <footer class="footer">
+  <div class="footer">
     <span class="todo-count"><strong>{{todoCount}}</strong> restantes</span>
     <ul class="filters">
       <li>
@@ -34,5 +34,5 @@
     </ul>
     <button *ngIf="todoService.todoListExistItem" class="clear-completed" (click)="itemAllRemove()">Supprimer touts</button>
     <button *ngIf="todoService.todoListExistItemDone" class="clear-completed" (click)="itemDoneRemove()">Supprimer terminés</button>
-  </footer>
+  </div>
 </section>

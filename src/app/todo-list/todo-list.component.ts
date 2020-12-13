@@ -54,6 +54,7 @@ export class TodoListComponent implements OnInit {
           isDone: false,
           isDeleted: false
       });
+      input.value = '';
     }
 
     itemDoneRemove() {

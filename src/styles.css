@@ -330,10 +330,15 @@ html .clear-completed:active {
   text-decoration: underline;
 }
 
+footer {
+  position: relative;
+  min-height: 13rem;
+}
+
 .author {
   text-align: center;
   position: absolute;
-  bottom: 4rem;
+  bottom: 1.2rem;
   width: 100%;
   left: 0;
 }

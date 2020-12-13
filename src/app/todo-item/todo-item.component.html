@@ -10,7 +10,8 @@
         <input #newLab
                class = "hidden"
                value   = {{item.label}}
-               (blur)="viewMode(newLab, item)"
+               (blur)="viewMode(item, newLab)"
+               (keydown.enter)="viewMode(item, newLab)"
         />
         <button class="destroy" (click)="itemRemove(item)"></button>
       </div>

@@ -58,7 +58,7 @@ export class TodoItemComponent implements OnInit {
     this.todoService.removeItems(item);
   }
 
-  viewMode(input: any, item: TodoItemData) {
+  viewMode(item: TodoItemData, input: any) {
     input.className = 'hidden';
     this.itemLabel(item, input.value);
   }
