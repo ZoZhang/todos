@@ -1,6 +1,16 @@
+<h1 class="title">{{label}}</h1>
+
+<div class="description">
+  <h3>Introduction</h3>
+  <ul>
+    <li><p>Double-cliquez le texte pour modifier son contenue</p></li>
+    <li><p>Annuler / Refaire : <code>Control + z</code> / <code>Control + Shift + z</code></p></li>
+  </ul>
+</div>
+
 <section class="todoapp">
+
   <header class="header">
-    <h1>{{label}}</h1>
     <form (submit)="appendItem(newTodoInput);">
       <input  #newTodoInput
               name        = "newTodoInput"

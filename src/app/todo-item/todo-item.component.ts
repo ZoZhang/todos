@@ -15,13 +15,10 @@ export class TodoItemComponent implements OnInit {
 
   constructor(private todoService: TodoService) {
     todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
-
     this.todoService.initialiseItemsStatus();
 
-    const localStorageItems = this.todoService.getLocalStorage();
-
-    if ('object' === typeof localStorageItems) {
-        this.todoList.items = localStorageItems.getValue();
+    if (this.todoService.todoListCurrentData) {
+      this.todoList = this.todoService.todoListCurrentData;
     }
   }
 
@@ -29,6 +26,10 @@ export class TodoItemComponent implements OnInit {
   }
 
   get items(): TodoItemData[] {
+
+    if (!this.todoList.items) {
+      return;
+    }
 
     switch (this.todoService.todoListFiltreStatus) {
 

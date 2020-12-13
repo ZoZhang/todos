@@ -11,7 +11,7 @@
                class = "hidden"
                value   = {{item.label}}
                (blur)="viewMode(item, newLab)"
-               (keydown.enter)="viewMode(item, newLab)"
+               (keydown.enter)="newLab.blur()"
         />
         <button class="destroy" (click)="itemRemove(item)"></button>
       </div>

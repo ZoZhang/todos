@@ -48,7 +48,7 @@ describe( 'LocalStorageService with Observable Pattern test suite', () => {
     describe( 'setItem', () => {
         it( 'should serialize and store the scopes in localStorage',
             () => {
-                service.setItem( this.key, this.scopes ).subscribe( x =>
+                service.setItem(this.key, this.scopes).subscribe(x =>
                     expect( x ).toEqual( this.scopes ) );
             } );
     } );
@@ -56,7 +56,7 @@ describe( 'LocalStorageService with Observable Pattern test suite', () => {
     describe( 'getItem', () => {
         it( 'should retrieve, deserialize scopes in localStorage and returns subscription for any changes there on after',
             () => {
-                service.setItem( this.key, this.scopes ).subscribe( x => {
+                service.setItem(this.key, this.scopes).subscribe(x => {
                     service.getItem( this.key ).subscribe( y => {
                         expect( y ).toEqual( this.scopes );
                     } );
