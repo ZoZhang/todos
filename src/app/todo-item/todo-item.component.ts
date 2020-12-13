@@ -8,6 +8,7 @@ import {TodoService} from '../services/todo.service';
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css']
 })
+
 export class TodoItemComponent implements OnInit {
 
   private todoList: TodoListData;
@@ -45,10 +46,6 @@ export class TodoItemComponent implements OnInit {
     }
   }
 
-  changeMode(mode: string) {
-    this.todoService.todoListModeStatus = mode;
-  }
-
   itemDone(item: TodoItemData, done: boolean) {
     this.todoService.setItemsDone(done, item);
   }
@@ -59,6 +56,16 @@ export class TodoItemComponent implements OnInit {
 
   itemRemove(item: TodoItemData) {
     this.todoService.removeItems(item);
+  }
+
+  viewMode(input: any, item: TodoItemData) {
+    input.className = 'hidden';
+    this.itemLabel(item, input.value);
+  }
+
+  editMode(input: any, $event: MouseEvent) {
+    input.className = 'edit editing';
+    input.focus();
   }
 
 }

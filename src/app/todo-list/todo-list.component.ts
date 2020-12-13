@@ -7,6 +7,7 @@ import {TodoService} from '../services/todo.service';
     templateUrl: './todo-list.component.html',
     styleUrls: ['./todo-list.component.css']
 })
+
 export class TodoListComponent implements OnInit {
 
     private todoList: TodoListData;

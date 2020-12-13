@@ -7,20 +7,17 @@ import { LocalStorageService } from './local-storage.service';
 @Injectable()
 export class TodoService {
 
-  // initialie l'état todolist
-  todoListModeStatus = 'read';
-
   // initialie l'état filtre
   todoListFiltreStatus = 'all';
-
-  // initialise l'état du toggle all
-  todoListSettingAllItemStatus = false;
 
   // initiale l'état items
   todoListExistItem = false;
 
   // initiale l'état supprimé terminé
   todoListExistItemDone = false;
+
+  // initialise l'état du toggle all
+  todoListSettingAllItemStatus = false;
 
   localStorageKey   = 'TodoList-Angular';
 
