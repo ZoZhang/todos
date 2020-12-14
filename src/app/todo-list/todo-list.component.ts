@@ -85,6 +85,7 @@ export class TodoListComponent implements OnInit {
     @HostListener('document:keydown.control.z')
     undoTodolist() {
         this.todoService.restoreTodoList('undo');
+        this.todoService.clearQrcode();
     }
 
     @HostListener('document:keydown.control.shift.z')

@@ -272,4 +272,9 @@ export class TodoService {
     }
   }
 
+  // nettoye le qr-code
+  clearQrcode() {
+    this.myAngularxQrCode = '';
+  }
+
 }

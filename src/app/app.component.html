@@ -1,5 +1,12 @@
 <app-todo-list></app-todo-list>
 
+<div class="google-map">
+    <h2>Google Map</h2>
+    <agm-map style="height: 300px;" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+        <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+</div>
+
 <footer>
     <div class="author">
        <p>Projet Angular - Florian Rodriguez par Zhao ZHANG</p>
