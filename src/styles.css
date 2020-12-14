@@ -36,6 +36,11 @@ body {
   font-weight: 300;
 }
 
+p {
+  margin:0;
+  padding:0;
+}
+
 button,
 input {
   outline: none;
@@ -323,8 +328,7 @@ label[for='toggle-all'] {
   border-color: rgba(175, 47, 47, 0.2);
 }
 
-.clear-completed,
-html .clear-completed:active {
+.clear-all,.clear-completed{
   float: right;
   position: relative;
   line-height: 20px;
@@ -333,8 +337,64 @@ html .clear-completed:active {
   cursor: pointer;
 }
 
+.clear-all:hover,
 .clear-completed:hover {
   text-decoration: underline;
+}
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.qr-code-btn {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.qr-code-btn:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.undo-btn{
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+.redo-btn{
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.btn-colose {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btn-colose:hover {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
 }
 
 .voice-recognition {
@@ -372,6 +432,10 @@ footer {
   padding: 0 0 0 17px;
 }
 
+.description ul li {
+  line-height: 2.5rem;
+}
+
 /*
 	Hack to remove background from Mobile Safari.
 	Can't use it globally since it destroys checkboxes in Firefox
@@ -394,12 +458,111 @@ footer {
   }
 }
 
-@media (max-width: 430px) {
-  .footer {
-    height: 50px;
+/**
+ * Responsive
+ */
+@media screen and (min-width: 200px) and (max-width: 640px) {
+
+  body {
+    padding: 0;
+    margin:0;
+    font-size:12px;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    min-width: 100%;
   }
 
-  .filters {
-    bottom: 10px;
+  .title {
+    font-size: 4rem;
   }
+
+  .description {
+    max-width: 87%;
+    margin: 0 auto;
+  }
+
+  .description ul {
+    padding-left: 9px;
+    margin-left: 0;
+  }
+
+  .todoapp {
+    max-width: 80%;
+  }
+
+  .todoapp,
+  .google-map{
+    padding: 0 20px 0 20px;
+    margin: 30px auto;
+  }
+
+  .google-map {
+    margin-top:50px;
+  }
+
+  .voice-recognition button i {
+    font-size:1.7rem;
+  }
+
+  .footer {
+    padding: 10px 15px;
+    height: 60px;
+    position: relative;
+  }
+
+  .footer .todo-count {
+    min-width: 19%;
+    overflow: hidden;
+  }
+
+  .btn,
+  .footer button{
+    color: #fff;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.12rem 0.3rem;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .footer button {
+    position: absolute;
+    top:41px;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+  }
+
+  .footer:before {
+    height:82px;
+  }
+
+  .footer .filters{
+    right: 0;
+    position: absolute;
+    margin-right: 0;
+  }
+
+  .footer button.clear-all{
+    left: 16px;
+  }
+
+  .footer button.clear-completed{
+    right:1px;
+  }
+
+  footer {
+    min-height: 2rem;
+  }
+
 }

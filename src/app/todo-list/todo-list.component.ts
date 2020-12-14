@@ -70,7 +70,6 @@ export class TodoListComponent implements OnInit {
     }
 
     itemDoneRemove() {
-        console.log(this.todoService.todoListExistItemDone);
         if (this.todoList.items) {
             this.todoList.items.filter(item => item.isDone === true && this.todoService.removeItems(item));
         }

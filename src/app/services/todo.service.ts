@@ -55,6 +55,8 @@ export class TodoService {
     if (this.todoListCurrentData) {
       this.todoListSubject.next(this.todoListCurrentData);
     }
+
+    this.initialiseItemsStatus();
   }
 
   getTodoListDataObservable(): Observable<TodoListData> {
@@ -201,13 +203,14 @@ export class TodoService {
     }
 
     // mise à jour l'état items
+    this.todoListExistItem = tdl.items.filter((item) => {
+      return item.isDeleted === false;
+    }).length >= 1;
+
     this.todoListExistItemDone = tdl.items.filter((item) => {
       return item.isDone === true && item.isDeleted === false;
     }).length >= 1;
 
-    this.todoListExistItem = tdl.items.filter((item) => {
-      return item.isDeleted === false;
-    }).length >= 1;
   }
 
   restoreTodoList(type: string) {

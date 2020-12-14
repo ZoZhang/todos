@@ -4,16 +4,37 @@
   <h3>Introduction</h3>
   <ul>
     <li><p>Double-cliquez le texte pour modifier son contenue</p></li>
-    <li><p>Annuler / Refaire : <code>Control + z</code> / <code>Control + Shift + z</code></p></li>
     <li>
-      <p>Génère un QR-code <code>Control + S</code></p>
-      <div *ngIf="todoService.myAngularxQrCode; then qrcode"></div>
-      <ng-template #qrcode>
-        <qrcode [ngClass]="!todoService.myAngularxQrCode ? 'hidden' : ''" [qrdata]="todoService.myAngularxQrCode" [width]="256" colorLight="#f5f5f5" [errorCorrectionLevel]="'M'"></qrcode>
-      </ng-template>
+      <div>
+        Annuler : <code>Control + z</code> ou &nbsp;
+        <button class="btn undo-btn" (click)="undoTodolist()">Annuler</button>
+      </div>
+    </li>
+    <li>
+      <div>
+        Refaire : <code>Control + Shift + z</code> ou &nbsp;
+        <button class="btn redo-btn" (click)="redoTodolist()">Refaire</button>
+      </div>
+    </li>
+    <li>
+      <div>Génère un QR-code <code>Control + S</code> ou
+        <div *ngIf="!todoService.myAngularxQrCode; then showQrcodeBtn else hiddenQrcodeBtn"></div>
+        <ng-template #showQrcodeBtn>
+          <button class="btn qr-code-btn" (click)="todoService.genereQrcode()">Génère</button>
+        </ng-template>
+
+        <ng-template #hiddenQrcodeBtn>
+          <button class="btn btn-colose qr-code-btn" (click)="todoService.clearQrcode()">Cache</button>
+        </ng-template>
+      </div>
     </li>
   </ul>
 </div>
+
+<div *ngIf="todoService.myAngularxQrCode; then qrcode"></div>
+<ng-template #qrcode>
+  <qrcode [ngClass]="!todoService.myAngularxQrCode ? 'hidden' : ''" [qrdata]="todoService.myAngularxQrCode" [width]="256" colorLight="#f5f5f5" [errorCorrectionLevel]="'M'"></qrcode>
+</ng-template>
 
 <section class="todoapp">
   <header class="header">
@@ -49,7 +70,9 @@
         <a [ngClass]="(todoService.todoListFiltreStatus === 'complet') ? 'filterCompleted selected' : 'filterCompleted'" (click)="itemShow('complet')">Complétés</a>
       </li>
     </ul>
-    <button *ngIf="todoService.todoListExistItem" class="clear-completed" (click)="itemAllRemove()">Supprimer touts</button>
-    <button *ngIf="todoService.todoListExistItemDone" class="clear-completed" (click)="itemDoneRemove()">Supprimer terminés</button>
+    <div class="buttons">
+      <button *ngIf="todoService.todoListExistItem" class="clear-all" (click)="itemAllRemove()">Supprimer touts</button>
+      <button *ngIf="todoService.todoListExistItemDone" class="clear-completed" (click)="itemDoneRemove()">Supprimer terminés</button>
+    </div>
   </div>
 </section>
