@@ -9,7 +9,6 @@
 </div>
 
 <section class="todoapp">
-
   <header class="header">
     <form (submit)="appendItem(newTodoInput);">
       <input  #newTodoInput
@@ -18,6 +17,7 @@
               placeholder = "Que faire?"
               autofocus />
     </form>
+    <app-speech-to-text></app-speech-to-text>
   </header>
   <section class="main">
     <input  class="toggle-all"

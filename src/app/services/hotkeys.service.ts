@@ -1,6 +1,6 @@
 /**
  * DIY Keyboard Shortcuts in Your Angular Application
- * reference : https://netbasal.com/diy-keyboard-shortcuts-in-your-angular-application-4704734547a2
+ * reference: https://netbasal.com/diy-keyboard-shortcuts-in-your-angular-application-4704734547a2
  */
 
 import {Inject, Injectable} from '@angular/core';

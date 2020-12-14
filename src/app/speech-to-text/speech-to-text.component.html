@@ -1,0 +1,4 @@
+<div class="voice-recognition">
+    <button [ngClass]="voiceStart ? 'hidden' : ''" (click)="startVoiceService()"><i class="fas fa-microphone"></i></button>
+    <button [ngClass]="!voiceStart ? 'hidden' : ''" (click)="stopVoiceService()"><i class="fas fa-microphone-alt"></i></button>
+</div>

@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TodoListComponent } from './todo-list.component';
 
-describe('TodoListComponent', () => {
-  let component: TodoListComponent;
-  let fixture: ComponentFixture<TodoListComponent>;
+import { SpeechToTextComponent } from './speech-to-text.component';
+
+describe('SpeechToTextComponent', () => {
+  let component: SpeechToTextComponent;
+  let fixture: ComponentFixture<SpeechToTextComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoListComponent ]
+      declarations: [ SpeechToTextComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoListComponent);
+    fixture = TestBed.createComponent(SpeechToTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

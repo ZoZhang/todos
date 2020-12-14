@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {TodoService} from './services/todo.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import {TodoService} from './services/todo.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private todoService: TodoService) { }
+  constructor() { }
 
   ngOnInit() {
   }

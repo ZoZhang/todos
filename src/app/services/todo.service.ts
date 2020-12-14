@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {TodoListData} from '../dataTypes/TodoListData';
 import {TodoItemData} from '../dataTypes/TodoItemData';
@@ -49,6 +49,10 @@ export class TodoService {
     this.todoListPosition = this.getCurrentPositionLocalStorage();
     this.todoListHistory = this.getLocalStorage() || [];
     this.todoListCurrentData = this.getCurrentLocalStorage();
+
+    if (this.todoListCurrentData) {
+      this.todoListSubject.next(this.todoListCurrentData);
+    }
   }
 
   getTodoListDataObservable(): Observable<TodoListData> {
@@ -125,8 +129,20 @@ export class TodoService {
   // save items to localStorage
   toLocalStorage() {
     const tdl = this.todoListSubject.getValue();
+
+    if (!tdl.items.length) {
+      return;
+    }
+
+    // synchroniser le position by LocalStorage
+    const localStorageItems = this.getLocalStorage();
+    if (localStorageItems !== null && this.todoListPosition !== localStorageItems.length) {
+      this.todoListPosition = localStorageItems.length;
+    } else {
+      this.todoListPosition += 1;
+    }
+
     this.todoListHistory.push(tdl);
-    this.todoListPosition += 1;
     this.localStorage.setItem(this.localStorageHistoryKey, this.todoListHistory);
     this.localStorage.setItem(this.localStoragePositionKey, this.todoListPosition);
 

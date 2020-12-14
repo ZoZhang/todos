@@ -83,6 +83,10 @@ code {
   color: #e6e6e6;
 }
 
+.header {
+  position: relative;
+}
+
 .title {
   width: 100%;
   font-size: 100px;
@@ -326,6 +330,24 @@ html .clear-completed:active {
 
 .clear-completed:hover {
   text-decoration: underline;
+}
+
+.voice-recognition {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+}
+
+.voice-recognition button {
+  cursor: pointer;
+}
+
+.voice-recognition button i{
+  font-size:2.2rem;
+}
+
+.voice-recognition button i.fa-microphone-alt {
+  color: red;
 }
 
 footer {

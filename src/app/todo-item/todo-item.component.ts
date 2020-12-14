@@ -15,14 +15,17 @@ export class TodoItemComponent implements OnInit {
 
   constructor(private todoService: TodoService) {
     todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
-    this.todoService.initialiseItemsStatus();
-
-    if (this.todoService.todoListCurrentData) {
-      this.todoList = this.todoService.todoListCurrentData;
-    }
   }
 
   ngOnInit() {
+    // this.todoService.initialiseItemsStatus();
+    //
+    // console.log(this.todoService.todoListCurrentData);
+    //
+    // if (this.todoService.todoListCurrentData) {
+    //     this.todoList = this.todoService.todoListCurrentData;
+    //
+    // }
   }
 
   get items(): TodoItemData[] {

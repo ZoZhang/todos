@@ -5,12 +5,14 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import {TodoService} from './services/todo.service';
 import {FormsModule} from '@angular/forms';
+import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    SpeechToTextComponent
   ],
   imports: [
     BrowserModule, FormsModule

@@ -2,6 +2,9 @@
   "name": "TODOS-ANGULAR",
   "version": "0.0.0",
   "license": "MIT",
+  "author": "Zhao ZHANG",
+  "email": "zo.zhang@gmail.com",
+  "repository": "https://github.com/ZoZhang/todos",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
