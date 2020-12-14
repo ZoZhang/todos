@@ -5,6 +5,11 @@ body {
   padding: 0;
 }
 
+hr {
+  color: #d0cccc;
+  border-style: dotted;
+}
+
 button {
   margin: 0;
   padding: 0;
@@ -354,7 +359,7 @@ label[for='toggle-all'] {
   -ms-user-select: none;
   user-select: none;
   border: 1px solid transparent;
-  padding: .375rem .75rem;
+  padding: .125rem .55rem;
   font-size: 1rem;
   line-height: 1.5;
   border-radius: .25rem;
@@ -379,10 +384,22 @@ label[for='toggle-all'] {
   border-color: #eea236;
 }
 
+.undo-btn:hover {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+
 .redo-btn{
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
+}
+
+.redo-btn:hover{
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
 }
 
 .btn-colose {

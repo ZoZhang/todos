@@ -1,5 +1,6 @@
 <h1 class="title">{{label}}</h1>
 
+<hr/>
 <div class="description">
   <h3>Introduction</h3>
   <ul>
@@ -36,6 +37,7 @@
   <qrcode [ngClass]="!todoService.myAngularxQrCode ? 'hidden' : ''" [qrdata]="todoService.myAngularxQrCode" [width]="256" colorLight="#f5f5f5" [errorCorrectionLevel]="'M'"></qrcode>
 </ng-template>
 
+<hr/>
 <section class="todoapp">
   <header class="header">
     <form (submit)="appendItem(newTodoInput);">
