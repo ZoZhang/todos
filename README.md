@@ -21,9 +21,9 @@ Et après, lance la commande `npm install && npm start` pour utiliser dans le lo
 * [x] Identification des utilisateurs et synchronisation des données avec FireBase
 * [x] Version responsive (application qui s'adapte aux tailles d'écran, comme un smartphone)
 
-##Problème rencontré
+## Problème rencontré
 
-###1. input double en 2 events(blur、keydown.enter)
+### 1. input double en 2 events(blur、keydown.enter)
 Quand on fait deux events sur la même input comme ci-dessous:
 ```
  <input #newLab
@@ -45,7 +45,7 @@ Finalement, je trouve la solution :
         />
 ```
         
-###2. Hotkeys Service 
+### 2. Hotkeys Service 
 J'ai trouve une référencé de service `hotkeys` par [cet article](https://netbasal.com/diy-keyboard-shortcuts-in-your-angular-application-4704734547a2) pour faire la fonctionalité `undo/redo`
 
 Quand je l'utilise dans le fichier `.ts` comme la suite.
@@ -75,7 +75,7 @@ constructor(private todoService: TodoService, private hotkeysService: Hotkeys) {
 ```
 Finalement, j'utilise la méthode `@HostListener('document:keydown.control.z')` dans les templates, et tout va bien.     
 
-###3. Google Map
+### 3. Google Map
 Au début, Je l'ai fais avec le module `@agm/core` en regardant la rérérencé: https://medium.com/javascript-in-plain-english/integrate-google-maps-to-your-angular-application-step-by-step-guide-3604aadb76d1
 
 l'application marche, mais il y a des erreurs de namespace introuvable sur google map comme la suivante.
@@ -98,11 +98,11 @@ Et puis, la localisation n'est pas correcte car je n'ai pas activé une facture 
 Geocoding Service: You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
 ```
 
-##Démonstration
+## Démonstration
 
-#####PC
+##### PC
 ![](https://i.imgur.com/4KDn1wD.jpg)
 
-#####Responsive
+##### Responsive
 ![](https://i.imgur.com/HyqiTpv.jpg)
 
