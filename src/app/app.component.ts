@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewChild} from '@angular/core';
-import {AgmMap, MapsAPILoader  } from '@agm/core';
+import {ChangeDetectionStrategy, Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,25 +6,23 @@ import {AgmMap, MapsAPILoader  } from '@agm/core';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
 
+  @ViewChild('googleMapContainer', { static: false }) gmap: ElementRef;
+  public map: google.maps.Map;
   public lat = 45.4471431;
   public lng = 4.385250699999999;
-  public zoom = 8;
+  public coordinates;
 
-  @ViewChild(AgmMap, {static: true}) public agmMap: AgmMap;
-
-  constructor(private mapsAPILoader: MapsAPILoader) { }
-
-  ngOnInit() {
-    this.setCurrentPosition();
+  ngAfterViewInit(): void {
+    this.mapInitializer();
   }
 
-  setCurrentPosition() {
+  mapInitializer(): void {
 
     if (!navigator.geolocation) {
-        console.log('Votre navigateur ne prend pas en charge la géolocalisation');
-        return;
+      console.log('Votre navigateur ne prend pas en charge la géolocalisation');
+      return;
     }
 
     navigator.geolocation.getCurrentPosition((position: Position) => {
@@ -37,25 +34,21 @@ export class AppComponent implements OnInit {
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
 
-      const latlng = {
-        lat: this.lat,
-        lng: this.lng
-      };
-      console.log('Current Position: ', latlng);
+      console.log('Current Position: ', this.lat, ',', this.lng);
 
-      this.mapsAPILoader.load().then(() => {
-        const geocoder = new google.maps.Geocoder;
-        geocoder.geocode({
-          'location': latlng
-        }, function(results) {
-          if (results[0]) {
-            this.currentLocation = results[0].formatted_address;
-            console.log(this.currentLocation);
-          } else {
-            console.log('votre position ne trouve pas');
-          }
-        });
+      this.coordinates = new google.maps.LatLng(this.lat, this.lng);
+
+      this.map = new google.maps.Map(this.gmap.nativeElement, {
+        center: this.coordinates,
+        zoom: 8
       });
+
+      const marker = new google.maps.Marker({
+        position: new google.maps.LatLng(this.lat, this.lng),
+        map: this.map
+      });
+
+      marker.setMap(this.map);
     });
   }
 

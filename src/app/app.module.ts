@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { AgmCoreModule } from '@agm/core';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoService } from './services/todo.service';
@@ -16,12 +15,9 @@ import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component
     TodoItemComponent,
     SpeechToTextComponent
   ],
-    imports: [
-        BrowserModule, FormsModule, QRCodeModule,
-        AgmCoreModule.forRoot({
-          apiKey: 'AIzaSyDuegErXnqhY4Tcd0_JduktNXLNldTsW9w'
-        })
-    ],
+  imports: [
+    BrowserModule, FormsModule, QRCodeModule
+  ],
   providers: [TodoService],
   bootstrap: [AppComponent]
 })

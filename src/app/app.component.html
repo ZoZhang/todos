@@ -3,9 +3,7 @@
 <div class="google-map">
     <h2>Google Map</h2>
     <p>La localisation a des erreurs moyennes car je n'ai pas facturé ce projet sur Google Cloud Projet</p>
-    <agm-map style="height: 500px;" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-        <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
-    </agm-map>
+    <div #googleMapContainer id="map" style="height: 500px;"></div>
 </div>
 
 <footer>
