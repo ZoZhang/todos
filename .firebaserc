@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todolist-298612": {
+      "hosting": {
+        "TODOS-ANGULAR": [
+          "todolist-298612"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todolist-298612"
+  }
+}
