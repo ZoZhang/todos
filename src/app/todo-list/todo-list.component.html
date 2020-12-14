@@ -5,6 +5,13 @@
   <ul>
     <li><p>Double-cliquez le texte pour modifier son contenue</p></li>
     <li><p>Annuler / Refaire : <code>Control + z</code> / <code>Control + Shift + z</code></p></li>
+    <li>
+      <p>Génère un QR-code <code>Control + S</code></p>
+      <div *ngIf="todoService.myAngularxQrCode; then qrcode"></div>
+      <ng-template #qrcode>
+        <qrcode [ngClass]="!todoService.myAngularxQrCode ? 'hidden' : ''" [qrdata]="todoService.myAngularxQrCode" [width]="256" colorLight="#f5f5f5" [errorCorrectionLevel]="'M'"></qrcode>
+      </ng-template>
+    </li>
   </ul>
 </div>
 

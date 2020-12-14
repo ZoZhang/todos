@@ -2,40 +2,42 @@ import {Injectable, OnInit} from '@angular/core';
 import {Observable, BehaviorSubject} from 'rxjs';
 import {TodoListData} from '../dataTypes/TodoListData';
 import {TodoItemData} from '../dataTypes/TodoItemData';
-import { LocalStorageService } from './local-storage.service';
+import {LocalStorageService} from './local-storage.service';
 
 @Injectable()
 export class TodoService {
 
   // initialie l'état filtre
-  todoListFiltreStatus: string;
+  public todoListFiltreStatus: string;
 
   // initiale l'état items
-  todoListExistItem: boolean;
+  public todoListExistItem: boolean;
 
   // initiale l'état supprimé terminé
-  todoListExistItemDone: boolean;
+  public todoListExistItemDone: boolean;
 
   // todolist current position
-  todoListPosition: number;
+  public  todoListPosition: number;
 
   // todolist localstorage key
-  localStorageHistoryKey: string;
+  public localStorageHistoryKey: string;
 
   // todolist history table
-  todoListHistory:  Array<TodoListData>;
+  public todoListHistory:  Array<TodoListData>;
 
   // todolist current items by localstorage
-  todoListCurrentData: TodoListData;
+  public todoListCurrentData: TodoListData;
 
   // todolist position localstorage key
-  localStoragePositionKey: string;
+  public localStoragePositionKey: string;
 
   // initialise l'état du toggle all
-  todoListSettingAllItemStatus = false;
+  public todoListSettingAllItemStatus = false;
 
   // todolis localStorage service
-  localStorage = new LocalStorageService;
+  public localStorage = new LocalStorageService;
+
+  public myAngularxQrCode: string = null;
 
   private todoListSubject = new BehaviorSubject<TodoListData>( {label: 'TodoList', items: []} );
 
@@ -257,6 +259,17 @@ export class TodoService {
     }
 
     this.initialiseItemsStatus();
+  }
+
+  // génère un qr-code
+  genereQrcode() {
+    const localStorageItems = this.getCurrentLocalStorage();
+
+    if ('object' === typeof localStorageItems) {
+      this.myAngularxQrCode = JSON.stringify(localStorageItems.items);
+    } else {
+      this.myAngularxQrCode = JSON.stringify(['votre Todolist est vide']);
+    }
   }
 
 }

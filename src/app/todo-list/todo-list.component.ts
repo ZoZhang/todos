@@ -91,4 +91,9 @@ export class TodoListComponent implements OnInit {
     redoTodolist() {
         this.todoService.restoreTodoList('redo');
     }
+
+    @HostListener('document:keydown.control.s')
+    qrcode() {
+        this.todoService.genereQrcode();
+    }
 }
