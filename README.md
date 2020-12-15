@@ -15,8 +15,18 @@ Et après, lance la commande `npm install && npm start` pour manipuler dans le l
 ## Fonctionnalités accomplis
 * [x] Effacer Tout
 * [x] Effacer taches terminés
-* [x] Sérialisation / désérialisation des données localement (Local Storage) - Pour sauvegarder les données localement
-* [x] Undo / Redo (Annuler / Refaire)
+* [x] Sérialisation / désérialisation des données localement (LocalStorage) - Pour sauvegarder les données localement
+##### Structure du donnée - LocalStorage
+```
+{
+    label: "angular", 
+    isDone: false, 
+    isDeleted: false, 
+    position: {lat: 45.4471431, lng: 4.385250699999999}
+}
+```
+
+* [x] Undo / Redo
 * [x] Utilisation de reconnaissance vocale
 * [x] Copie de listes par QR-code
 * [x] Géolocalisation des choses à faire (carte google map) 
