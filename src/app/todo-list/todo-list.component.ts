@@ -1,7 +1,8 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit, Output, ViewContainerRef} from '@angular/core';
 import {TodoListData} from '../dataTypes/TodoListData';
 import {TodoService} from '../services/todo.service';
 import {Hotkeys} from '../services/hotkeys.service';
+import {AppComponent} from '../app.component';
 
 @Component({
     selector: 'app-todo-list',
@@ -13,7 +14,7 @@ export class TodoListComponent implements OnInit {
 
     private todoList: TodoListData;
 
-    constructor(private todoService: TodoService, private hotkeysService: Hotkeys) {
+    constructor(private todoService: TodoService, private viewContainerRef: ViewContainerRef, private hotkeysService: Hotkeys) {
         todoService.getTodoListDataObservable().subscribe( tdl => this.todoList = tdl );
     }
 
@@ -24,6 +25,11 @@ export class TodoListComponent implements OnInit {
 
         // Redo
         // this.hotkeys.addShortcut({ keys: 'control.shift.z' }).subscribe(this.todoService.redoTodolist);
+    }
+
+    getParentComponent(): AppComponent {
+        return this.viewContainerRef['_data'].componentView.component
+                   .viewContainerRef['_view'].component;
     }
 
     get label(): string {
@@ -64,7 +70,11 @@ export class TodoListComponent implements OnInit {
       this.todoService.appendItems({
           label: newLabel,
           isDone: false,
-          isDeleted: false
+          isDeleted: false,
+          position: {
+              lat: this.getParentComponent().lat,
+              lng: this.getParentComponent().lng
+          }
       });
       input.value = '';
     }

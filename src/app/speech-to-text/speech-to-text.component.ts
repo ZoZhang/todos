@@ -48,7 +48,8 @@ export class SpeechToTextComponent implements OnInit {
     this.todoService.appendItems({
       label: voiceLabel,
       isDone: false,
-      isDeleted: false
+      isDeleted: false,
+      position: []
     });
   }
 }

@@ -70,7 +70,7 @@ export class TodoService {
     const tdl = this.todoListSubject.getValue();
     this.todoListSubject.next( {
       label: tdl.label,
-      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label, isDone: I.isDone, isDeleted: I.isDeleted}) )
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label, isDone: I.isDone, isDeleted: I.isDeleted, position: I.position}) )
     });
 
     this.toLocalStorage();
@@ -80,7 +80,7 @@ export class TodoService {
     const tdl = this.todoListSubject.getValue();
     this.todoListSubject.next( {
       label: tdl.label,
-      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label: I.label, isDone, isDeleted: I.isDeleted}) )
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label: I.label, isDone, isDeleted: I.isDeleted, position: I.position}) )
     });
 
     this.toLocalStorage();
@@ -105,7 +105,7 @@ export class TodoService {
     const tdl = this.todoListSubject.getValue();
     this.todoListSubject.next( {
       label: tdl.label, // ou on peut écrire: ...tdl,
-      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label: I.label, isDone: I.isDone, isDeleted: true}) )
+      items: tdl.items.map( I => items.indexOf(I) === -1 ? I : ({label: I.label, isDone: I.isDone, position: I.position, isDeleted: true}) )
     });
 
     this.toLocalStorage();
@@ -115,7 +115,7 @@ export class TodoService {
     const tdl = this.todoListSubject.getValue();
     this.todoListSubject.next( {
       label: tdl.label, // ou on peut écrire: ...tdl,
-      items: tdl.items.map(I => ({label: I.label, isDone: I.isDone, isDeleted: true}))
+      items: tdl.items.map(I => ({label: I.label, isDone: I.isDone, position: I.position, isDeleted: true}))
     });
 
     this.toLocalStorage();
