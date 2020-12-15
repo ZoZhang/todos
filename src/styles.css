@@ -207,7 +207,7 @@ label[for='toggle-all'] {
 
 .todo-list .editing{
   display: block;
-  width: 506px;
+  width: 93%;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px;
   position: absolute;
@@ -522,8 +522,13 @@ footer {
     margin-left: 0;
   }
 
-  .todoapp {
+  .todoapp,.alert {
     max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .todo-list .editing {
+    width:83%;
   }
 
   .todoapp,
@@ -542,8 +547,11 @@ footer {
 
   .footer {
     padding: 10px 15px;
-    height: 60px;
     position: relative;
+  }
+
+  .footer.button-actions {
+    height: 60px;
   }
 
   .footer .todo-count {
