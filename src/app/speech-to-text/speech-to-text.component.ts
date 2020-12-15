@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {VoiceRecognitionService} from '../services/voice-recognition.service';
 import {TodoService} from '../services/todo.service';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-speech-to-text',
@@ -11,12 +12,20 @@ export class SpeechToTextComponent implements OnInit {
 
   public voiceStart: boolean;
 
-  constructor(private todoService: TodoService, private voiceRecognitionService: VoiceRecognitionService) {
+  constructor(private todoService: TodoService, private viewContainerRef: ViewContainerRef, private voiceRecognitionService: VoiceRecognitionService) {
 
     if (!('webkitSpeechRecognition' in window)) {
       this.todoService.alertMessage = 'SpeechRecognition ne fonctionne pas sur ce navigateur';
       return;
     }
+
+  }
+
+  getParentComponent(): AppComponent {
+    return this.viewContainerRef[ '_data' ]
+        .componentView.component.viewContainerRef[ '_view' ]
+        .component.viewContainerRef[ '_data' ]
+        .componentView.component.viewContainerRef[ '_view' ].component;
 
   }
 
@@ -49,7 +58,10 @@ export class SpeechToTextComponent implements OnInit {
       label: voiceLabel,
       isDone: false,
       isDeleted: false,
-      position: []
+      position: {
+        lat: this.getParentComponent().lat,
+        lng: this.getParentComponent().lng
+      }
     });
   }
 }
