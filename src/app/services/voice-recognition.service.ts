@@ -19,12 +19,6 @@ export class VoiceRecognitionService {
   constructor() { }
 
   init() {
-
-    if (!('webkitSpeechRecognition' in window)) {
-     alert('SpeechRecognition ne fonctionne pas sur ce navigateur');
-     return;
-    }
-
     this.text = '';
     this.isStoppedSpeechRecog = false;
     this.recognition =  new webkitSpeechRecognition();

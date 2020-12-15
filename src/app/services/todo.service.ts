@@ -7,13 +7,16 @@ import {LocalStorageService} from './local-storage.service';
 @Injectable()
 export class TodoService {
 
-  // initialie l'état filtre
+  // initialise alert message
+  public alertMessage: string;
+  
+  // initialise l'état filtre
   public todoListFiltreStatus: string;
 
-  // initiale l'état items
+  // initialise l'état items
   public todoListExistItem: boolean;
 
-  // initiale l'état supprimé terminé
+  // initialise l'état supprimé terminé
   public todoListExistItemDone: boolean;
 
   // todolist current position

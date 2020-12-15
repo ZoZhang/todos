@@ -11,7 +11,14 @@ export class SpeechToTextComponent implements OnInit {
 
   public voiceStart: boolean;
 
-  constructor(private todoService: TodoService, private voiceRecognitionService: VoiceRecognitionService) { }
+  constructor(private todoService: TodoService, private voiceRecognitionService: VoiceRecognitionService) {
+
+    if (!('webkitSpeechRecognition' in window)) {
+      this.todoService.alertMessage = 'SpeechRecognition ne fonctionne pas sur ce navigateur';
+      return;
+    }
+
+  }
 
   ngOnInit() {
     this.voiceStart = false;

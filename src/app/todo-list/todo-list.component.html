@@ -34,10 +34,16 @@
 
 <div *ngIf="todoService.myAngularxQrCode; then qrcode"></div>
 <ng-template #qrcode>
+  <hr/>
   <qrcode [ngClass]="!todoService.myAngularxQrCode ? 'hidden' : ''" [qrdata]="todoService.myAngularxQrCode" [width]="256" colorLight="#f5f5f5" [errorCorrectionLevel]="'M'"></qrcode>
 </ng-template>
 
 <hr/>
+
+<div *ngIf="todoService.alertMessage" class="alert alert-info alert-danger" role="alert">
+    {{todoService.alertMessage}}
+</div>
+
 <section class="todoapp">
   <header class="header">
     <form (submit)="appendItem(newTodoInput);">
