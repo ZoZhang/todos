@@ -4,11 +4,13 @@
 https://todolist-298612.firebaseapp.com/
 
 ### Utilisation
-Il faut installer d'abord `node` && `npm` dans la dernier version.
+Il est forcement de vous conseiller à utiliser `Chrome` pour lancer cette application.
 
-Il faut aussi installez `angular8`
+D'abord, il faut installer `node` && `npm` dans la dernier version.
 
-Et après, lance la commande `npm install && npm start` pour utiliser dans le local.
+Ensuite, Il faut aussi installez `angular8`
+
+Et après, lance la commande `npm install && npm start` pour manipuler dans le local.
 
 ## Fonctionnalités accomplis
 * [x] Effacer Tout
@@ -98,11 +100,20 @@ Et puis, la localisation n'est pas correcte car je n'ai pas activé une facture 
 Geocoding Service: You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started
 ```
 
+### 4. SpeechRecognition
+  Certains navigateur ne supporte pas l'API `webkitSpeechRecognition`, par exemple: safari
+  
+  Et alors, mon application marche très bien sur Chrome.
+  
 ## Démonstration
 
 ##### PC
-![](https://i.imgur.com/4KDn1wD.jpg)
+![](https://i.imgur.com/xnuYxwy.jpg)
 
 ##### Responsive
-![](https://i.imgur.com/HyqiTpv.jpg)
+![](https://i.imgur.com/0ev1Vke.jpg)
+
+##### Alert message
+![](https://i.imgur.com/aBqaDvx.jpg)
+
 
