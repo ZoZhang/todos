@@ -11,16 +11,23 @@ declare var webkitSpeechRecognition: any;
 })
 export class VoiceRecognitionService {
 
-  public text = '';
-  tempWords;
-
-  recognition =  new webkitSpeechRecognition();
-  isStoppedSpeechRecog = false;
+  public text;
+  public tempWords;
+  public recognition;
+  public isStoppedSpeechRecog;
 
   constructor() { }
 
   init() {
 
+    if (!('webkitSpeechRecognition' in window)) {
+     alert('SpeechRecognition ne fonctionne pas sur ce navigateur');
+     return;
+    }
+
+    this.text = '';
+    this.isStoppedSpeechRecog = false;
+    this.recognition =  new webkitSpeechRecognition();
     this.recognition.interimResults = true;
     this.recognition.lang = 'fr-FR';
 
